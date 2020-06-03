@@ -1,6 +1,6 @@
 name: check_pr
 
-on: [pull_request]
+on: push
 
 jobs:
   lint:
