@@ -14,12 +14,13 @@ jobs:
         architecture: 'x64'
     - name: Install requirements
       run: |
-        sudo apt-get update
-        sudo apt-get install -y libgdal-dev
-        pip install --no-cache-dir pipenv
-        pipenv install --dev
-    - name: run lint
-      run: make test-ci
+        pip install --no-cache-dir flake8
+    - name: run flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings.
+        flake8 . --count --exit-zero --statistics
 
 
   dockerize:
